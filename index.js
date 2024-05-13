@@ -17,8 +17,7 @@ app.use("/", routes);
 
 const io = new Server(server, {
   cors: {
-    origin: "https://chat-app-client-h19fyukqw-joaquinjrgs-projects.vercel.app/",
-    methods: ["GET", "POST"]
+    origin: "https://chat-app-client-h19fyukqw-joaquinjrgs-projects.vercel.app",
   }
 }); 
 
