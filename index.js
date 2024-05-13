@@ -17,7 +17,7 @@ app.use("/", routes);
 
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:5173",
+    origin: "https://chat-app-client-h19fyukqw-joaquinjrgs-projects.vercel.app/",
     methods: ["GET", "POST"]
   }
 }); 
