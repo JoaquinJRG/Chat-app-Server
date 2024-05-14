@@ -37,6 +37,10 @@ io.on('connection', (socket) => {
 
   });
 
+  socket.on("typing", (idChat) => {
+    socket.to(idChat).emit("is_typing"); 
+  });
+
 });
 
 //LISTEN
