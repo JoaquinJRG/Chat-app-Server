@@ -1,7 +1,7 @@
 import express from "express"; 
 import { getAllUsuarios, addImg, createUsuario, existsUsuario, getImgById } from "./models/usuario.js";
 import { createChat, getChatsByUser1Id, getChatsByUser2Id } from "./models/chat.js"; 
-import { getAllMessagesByChatId, insertMessage, addToFavorites, getFavoritesByUserId } from "./models/mensaje.js";
+import { getAllMessagesByChatId, insertMessage, addToFavorites, removeFromFavorites, getFavoritesByUserId } from "./models/mensaje.js";
 import multer from "multer";
 import fs from "node:fs"; 
 const upload = multer({dest: "uploads/"}); 
@@ -52,6 +52,13 @@ router.get("/addToFavorites/:idMensaje", async (req, res) => {
   const result = await addToFavorites(idMensaje);
   res.json(result);
 });
+
+router.get("/removeFromFavorites/:idMensaje", async (req, res) => {
+  const idMensaje = req.params.idMensaje; 
+  const result = await removeFromFavorites(idMensaje);
+  res.json(result);
+});
+
 
 router.get("/favorites/:idUsuario", async (req, res) => {
   const idUsuario = req.params.idUsuario; 

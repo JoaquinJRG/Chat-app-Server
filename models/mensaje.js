@@ -42,7 +42,7 @@ export async function insertMessage(idMensaje, idChat, texto, usuarioEnvia, usua
 export async function getFavoritesByUserId(idUsuario) {
   try {
     const favorites = await client.execute({
-      sql: "SELECT * FROM Mensaje WHERE favorito = 1 AND usuario_recibe = ?",
+      sql: "SELECT M.id_mensaje, M.texto, M.fecha, M.favorito, U.img_perfil, U.nombre FROM Mensaje M, Usuario U WHERE M.usuario_envia = U.id_usuario AND M.favorito = 1 AND M.usuario_recibe = ?",
       args: [idUsuario]
     }); 
 
@@ -60,6 +60,21 @@ export async function addToFavorites(idMensaje) {
 
     const result = await client.execute({
       sql: "UPDATE Mensaje SET favorito = 1 WHERE id_mensaje = ?",
+      args: [idMensaje]
+    }); 
+
+    return result;
+
+  } catch(e) {
+    return false; 
+  }
+}
+
+export async function removeFromFavorites(idMensaje) {
+  try {
+
+    const result = await client.execute({
+      sql: "UPDATE Mensaje SET favorito = 0 WHERE id_mensaje = ?",
       args: [idMensaje]
     }); 
 
