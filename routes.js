@@ -1,5 +1,5 @@
 import express from "express"; 
-import { getAllUsuarios, addImg, createUsuario, existsUsuario, getImgById } from "./models/usuario.js";
+import { getAllUsuarios, addImg, createUsuario, existsUsuario, getImgById, deleteUser } from "./models/usuario.js";
 import { createChat, getChatsByUser1Id, getChatsByUser2Id } from "./models/chat.js"; 
 import { getAllMessagesByChatId, insertMessage, addToFavorites, removeFromFavorites, getFavoritesByUserId } from "./models/mensaje.js";
 import multer from "multer";
@@ -101,5 +101,12 @@ router.post("/addImg", upload.single("img"), async (req, res) => {
 
   res.json(result); 
 });
+
+//Delete 
+router.delete("/deleteUser/:id", async (req, res) => {
+  const idUsuario = req.params.id; 
+  const result = await deleteUser(idUsuario); 
+  res.json(result); 
+}); 
 
 export default router; 

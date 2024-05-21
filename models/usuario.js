@@ -80,4 +80,21 @@ export async function addImg(img, idUsuario) {
   return result; 
 }
 
+export async function deleteUser(idUsuario) {
+
+  try {
+    const result = await client.execute({
+      sql: "DELETE FROM Usuario WHERE id_usuario = ?",
+      args: [idUsuario]
+    }); 
+
+    return result; 
+
+  } catch(e) {
+
+    return false; 
+  }
+
+}
+
 
