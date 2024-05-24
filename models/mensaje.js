@@ -39,6 +39,20 @@ export async function insertMessage(idMensaje, idChat, texto, usuarioEnvia, usua
   }
 }
 
+export async function deleteMessage(idMensaje) {
+  try {
+    const result = await client.execute({
+      sql: "DELETE FROM Mensaje WHERE id_mensaje = ?",
+      args: [idMensaje]
+    });
+
+    return result; 
+    
+  } catch (e) {
+    return false; 
+  }
+}
+
 export async function getFavoritesByUserId(idUsuario) {
   try {
     const favorites = await client.execute({

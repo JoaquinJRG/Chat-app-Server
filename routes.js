@@ -30,11 +30,11 @@ router.get("/myCreateChats/:id", async (req, res) => {
   const chatData = [];
 
   if (Array.isArray(chatData1)) {
-    chatData.push(...chatData1); // Agrega los elementos del primer array
+    chatData.push(...chatData1); 
   }
   
   if (Array.isArray(chatData2)) {
-    chatData.push(...chatData2); // Agrega los elementos del segundo array
+    chatData.push(...chatData2); 
   }
 
   res.json(chatData);
