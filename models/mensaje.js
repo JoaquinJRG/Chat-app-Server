@@ -52,6 +52,19 @@ export async function deleteMessage(idMensaje) {
     return false; 
   }
 }
+export async function editMessage(newText, idMensaje) {
+  try {
+    const result = await client.execute({
+      sql: "UPDATE Mensaje SET texto = ? WHERE id_mensaje = ?",
+      args: [newText, idMensaje]
+    });
+
+    return result; 
+    
+  } catch (e) {
+    return false; 
+  }
+}
 
 export async function getFavoritesByUserId(idUsuario) {
   try {

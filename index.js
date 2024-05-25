@@ -4,7 +4,7 @@ import cors from "cors";
 import { Server } from "socket.io"; 
 import { configDotenv } from "dotenv";
 import routes from "./routes.js"; 
-import {insertMessage, deleteMessage} from "./models/mensaje.js";
+import {insertMessage, deleteMessage, editMessage} from "./models/mensaje.js";
 
 //Configuración
 configDotenv(); 
@@ -46,6 +46,12 @@ io.on('connection', (socket) => {
     
     socket.to(data.idChat).emit("message_deleted", data.idMsg);
 
+  });
+
+  socket.on("edit_message", async (data) => {
+    await editMessage(data.newText, data.idMensaje);
+
+    socket.to(data.idChat).emit("message_edited", {newText: data.newText, idMsg: data.idMensaje});
   });
 
 });
