@@ -22,7 +22,6 @@ const io = new Server(server, {
 }); 
 
 io.on('connection', (socket) => {
-  console.log('a user connected');
 
   socket.on("join_room", (data) => {
     socket.join(data); 
@@ -57,9 +56,7 @@ io.on('connection', (socket) => {
 });
 
 //LISTEN
-server.listen(PORT, () => {
-  console.log(`Server listening on http://localhost:${PORT}`); 
-}); 
+server.listen(PORT); 
 
 
 
